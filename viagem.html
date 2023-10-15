@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Vinicius Antonio Minas">
+    <title>Autonomia de Viagem</title>
+</head>
+<body>
+    <h1>Calculadora de Viagem</h1>
+
+    <label for="nomeViagem">Nome da viagem:</label>
+    <input type="text" id="nomeViagem">
+
+    <label for="kmPercorridos">KM percorridos:</label>
+    <input type="text" id="kmPercorridos">
+
+    <label for="litrosGastos">Litros de combustível gastos:</label>
+    <input type="text" id="litrosGastos">
+
+    <label for="valorLitrosCombustivel">Valor do litro de combustível (em R$)</label>
+    <input type="text" id="valorLitrosCombustivel">
+
+    <button onclick="calcularViagem()">Calcular</button>
+
+    <div id="resultado">
+    </div>
+
+    <script>
+        function calcularViagem() {
+            const nomeViagem = document.getElementById("nomeViagem").value;
+            const kmPercorridos = parseFloat(document.getElementById("kmPercorridos").value);
+            const litrosGastos = parseFloat(document.getElementById("litrosGastos").value);
+            const valorLitrosCombustivel = parseFloat(document.getElementById("valorLitrosCombustivel").value);
+
+            const autonomia = kmPercorridos / litrosGastos;
+            const custoViagem = litrosGastos * valorLitrosCombustivel;
+            const custoPorKm = custoViagem / kmPercorridos;
+
+            const resultado = ` 
+                Em sua viagem para ${nomeViagem},
+                você percorreu ${kmPercorridos} km e gastou ${litrosGastos} litros de combustível.
+                Seu carro fez ${autonomia.toFixed(2)} km por litro e sua viagem teve um custo de R$ ${custoViagem.toFixed(2)}, sendo R$ ${custoPorKm.toFixed(2)} por kilometro.
+            `;
+
+            document.getElementById("resultado").innerHTML = resultado;
+
+        }
+    </script>
+
+</body>
+</html>
